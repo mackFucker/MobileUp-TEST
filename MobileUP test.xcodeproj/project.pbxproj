@@ -22,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		8F63493A29F0AFCF0007FB41 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticationViewController.swift; path = ../../../../AuthenticationViewController.swift; sourceTree = "<group>"; };
+		8FB9CBD529F0B4AD0024AB73 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8FF026FF29F050C100F3F878 /* MobileUP test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MobileUP test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FF0270229F050C100F3F878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FF0270429F050C100F3F878 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +70,7 @@
 				8FF0271C29F05BA300F3F878 /* Modules */,
 				8FF0271629F0510000F3F878 /* App */,
 				8FF0271029F050C200F3F878 /* Info.plist */,
+				8FB9CBD529F0B4AD0024AB73 /* README.md */,
 			);
 			path = "MobileUP test";
 			sourceTree = "<group>";
