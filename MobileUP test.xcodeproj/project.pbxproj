@@ -51,6 +51,7 @@
 		8FF026F629F050C100F3F878 = {
 			isa = PBXGroup;
 			children = (
+				8FB9CBD529F0B4AD0024AB73 /* README.md */,
 				8FF0270129F050C100F3F878 /* MobileUP test */,
 				8FF0270029F050C100F3F878 /* Products */,
 			);
@@ -70,7 +71,6 @@
 				8FF0271C29F05BA300F3F878 /* Modules */,
 				8FF0271629F0510000F3F878 /* App */,
 				8FF0271029F050C200F3F878 /* Info.plist */,
-				8FB9CBD529F0B4AD0024AB73 /* README.md */,
 			);
 			path = "MobileUP test";
 			sourceTree = "<group>";
