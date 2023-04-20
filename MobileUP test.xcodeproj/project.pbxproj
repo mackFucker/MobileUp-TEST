@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8F63493B29F0AFCF0007FB41 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F63493A29F0AFCF0007FB41 /* AuthenticationViewController.swift */; };
+		8FB9CBD729F132860024AB73 /* AuthenticationWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB9CBD629F132860024AB73 /* AuthenticationWebView.swift */; };
+		8FB9CBD929F16C4B0024AB73 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB9CBD829F16C4B0024AB73 /* Model.swift */; };
+		8FB9CBDB29F190A40024AB73 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB9CBDA29F190A40024AB73 /* NetworkManager.swift */; };
 		8FF0270329F050C100F3F878 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0270229F050C100F3F878 /* AppDelegate.swift */; };
 		8FF0270529F050C100F3F878 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0270429F050C100F3F878 /* SceneDelegate.swift */; };
 		8FF0270C29F050C200F3F878 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FF0270B29F050C200F3F878 /* Assets.xcassets */; };
@@ -23,6 +26,9 @@
 /* Begin PBXFileReference section */
 		8F63493A29F0AFCF0007FB41 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticationViewController.swift; path = ../../../../AuthenticationViewController.swift; sourceTree = "<group>"; };
 		8FB9CBD529F0B4AD0024AB73 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8FB9CBD629F132860024AB73 /* AuthenticationWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationWebView.swift; sourceTree = "<group>"; };
+		8FB9CBD829F16C4B0024AB73 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		8FB9CBDA29F190A40024AB73 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8FF026FF29F050C100F3F878 /* MobileUP test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MobileUP test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FF0270229F050C100F3F878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FF0270429F050C100F3F878 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +88,7 @@
 				8FF0270429F050C100F3F878 /* SceneDelegate.swift */,
 				8FF0270D29F050C200F3F878 /* LaunchScreen.storyboard */,
 				8FF0270B29F050C200F3F878 /* Assets.xcassets */,
+				8FB9CBDA29F190A40024AB73 /* NetworkManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -91,6 +98,7 @@
 			children = (
 				8F63493A29F0AFCF0007FB41 /* AuthenticationViewController.swift */,
 				8FF0271A29F059CB00F3F878 /* AuthenticationView.swift */,
+				8FB9CBD629F132860024AB73 /* AuthenticationWebView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -108,6 +116,7 @@
 		8FF0271D29F05BB600F3F878 /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				8FB9CBD829F16C4B0024AB73 /* Model.swift */,
 				8FF0271F29F05D1400F3F878 /* GalleryViewController.swift */,
 				8FF0272129F05D3900F3F878 /* GalleryView.swift */,
 				8FF0272729F08E3400F3F878 /* CollectionViewCell.swift */,
@@ -194,13 +203,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FB9CBDB29F190A40024AB73 /* NetworkManager.swift in Sources */,
 				8FF0270329F050C100F3F878 /* AppDelegate.swift in Sources */,
+				8FB9CBD729F132860024AB73 /* AuthenticationWebView.swift in Sources */,
 				8FF0272229F05D3900F3F878 /* GalleryView.swift in Sources */,
 				8FF0272829F08E3400F3F878 /* CollectionViewCell.swift in Sources */,
 				8FF0270529F050C100F3F878 /* SceneDelegate.swift in Sources */,
 				8F63493B29F0AFCF0007FB41 /* AuthenticationViewController.swift in Sources */,
 				8FF0272029F05D1400F3F878 /* GalleryViewController.swift in Sources */,
 				8FF0272429F05D5900F3F878 /* GalleryInDetailsViewController.swift in Sources */,
+				8FB9CBD929F16C4B0024AB73 /* Model.swift in Sources */,
 				8FF0272629F05D6900F3F878 /* GalleryInDetailsView.swift in Sources */,
 				8FF0271B29F059CB00F3F878 /* AuthenticationView.swift in Sources */,
 			);

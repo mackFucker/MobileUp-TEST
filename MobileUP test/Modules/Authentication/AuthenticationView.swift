@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol AuthenticationViewOutput: AnyObject {
+    func openVKAuth()
+}
+
 final class AuthenticationView: UIView {
     
+     weak var delegate: AuthenticationViewOutput?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
@@ -40,9 +46,15 @@ final class AuthenticationView: UIView {
         loginVK.setTitle("Вход через VK", for: .normal)
         loginVK.setTitleColor(.systemBackground, for: .normal)
         loginVK.translatesAutoresizingMaskIntoConstraints = false
+        loginVK.addTarget(self, action: #selector(openWebViewVK), for: .touchUpInside)
         addSubview(loginVK)
         return loginVK
     }()
+    
+    @objc
+    private  func openWebViewVK() {
+        delegate?.openVKAuth()
+    }
     
     override func updateConstraints() {
         super.updateConstraints()
@@ -56,7 +68,6 @@ final class AuthenticationView: UIView {
             loginVK.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             loginVK.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -42),
             loginVK.heightAnchor.constraint(equalToConstant: 52)
-
         ])
     }
 }

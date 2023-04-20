@@ -14,6 +14,7 @@ final class CollectionViewCell: UICollectionViewCell {
     private lazy var image: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .red
         contentView.addSubview(image)
         return image
     }()
@@ -29,11 +30,15 @@ final class CollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super .init(frame: frame)
         setNeedsUpdateConstraints()
-        backgroundColor = .red
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setup(viewModel: ViewModel) {
+//        image.sd_setImage(with: URL(string: viewModel.image))
+//        text.text = viewModel.name
     }
     
     override func updateConstraints() {
@@ -44,9 +49,6 @@ final class CollectionViewCell: UICollectionViewCell {
             image.topAnchor.constraint(equalTo: topAnchor),
             image.heightAnchor.constraint(equalToConstant: 170),
             image.widthAnchor.constraint(equalToConstant: 170),
-            
-            text.centerXAnchor.constraint(equalTo: centerXAnchor),
-            text.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
