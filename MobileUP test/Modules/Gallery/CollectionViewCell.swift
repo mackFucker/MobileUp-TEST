@@ -6,30 +6,24 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class CollectionViewCell: UICollectionViewCell {
     
-    static let identifer = "CollectionViewCell"
-    
+    override class var requiresConstraintBasedLayout: Bool { true }
+        
     private lazy var image: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .red
+        image.backgroundColor = .red
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
         contentView.addSubview(image)
         return image
     }()
     
-    private lazy var text: UILabel = {
-        let text = UILabel()
-        text.textColor = .label
-        contentView.addSubview(text)
-        text.translatesAutoresizingMaskIntoConstraints = false
-        return text
-    }()
-    
     override init(frame: CGRect) {
         super .init(frame: frame)
-        setNeedsUpdateConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -37,19 +31,18 @@ final class CollectionViewCell: UICollectionViewCell {
     }
     
     func setup(viewModel: ViewModel) {
-//        image.sd_setImage(with: URL(string: viewModel.image))
-//        text.text = viewModel.name
+        image.sd_setImage(with: .init(string: viewModel.image))
     }
     
     override func updateConstraints() {
-        super.updateConstraints()
-
         NSLayoutConstraint.activate([
-            image.centerXAnchor.constraint(equalTo: centerXAnchor),
             image.topAnchor.constraint(equalTo: topAnchor),
-            image.heightAnchor.constraint(equalToConstant: 170),
-            image.widthAnchor.constraint(equalToConstant: 170),
+            image.bottomAnchor.constraint(equalTo: bottomAnchor),
+            image.leadingAnchor.constraint(equalTo: leadingAnchor),
+            image.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
+        
+        super.updateConstraints()
     }
     
 }

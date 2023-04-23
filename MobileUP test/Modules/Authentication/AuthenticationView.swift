@@ -13,10 +13,12 @@ protocol AuthenticationViewOutput: AnyObject {
 
 final class AuthenticationView: UIView {
     
-     weak var delegate: AuthenticationViewOutput?
+    private weak var delegate: AuthenticationViewOutput?
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(delegate: AuthenticationViewOutput) {
+        super.init(frame: .zero)
+        
+        self.delegate = delegate
         backgroundColor = .systemBackground
     }
     
@@ -28,10 +30,7 @@ final class AuthenticationView: UIView {
         let mobileUpLable = UILabel()
         mobileUpLable.font = UIFont.boldSystemFont(ofSize: 44)
         mobileUpLable.adjustsFontForContentSizeCategory = true
-        mobileUpLable.text = """
-        Mobile Up
-        Gallery
-        """
+        mobileUpLable.text = "Mobile Up\nGallery"
         mobileUpLable.lineBreakStrategy = .hangulWordPriority
         mobileUpLable.numberOfLines = 2
         mobileUpLable.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +51,7 @@ final class AuthenticationView: UIView {
     }()
     
     @objc
-    private  func openWebViewVK() {
+    private func openWebViewVK() {
         delegate?.openVKAuth()
     }
     

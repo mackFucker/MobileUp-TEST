@@ -14,10 +14,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let navController = UINavigationController(rootViewController: AuthenticationViewController())
-        navController.navigationBar.prefersLargeTitles = true
-        window?.rootViewController = navController
-        window?.makeKeyAndVisible()
+        self.window?.makeKeyAndVisible()
+        
+        NetworkManager.shared.checkToken(token:  KeychainRepository.shared.getTokenFromKeychain(key: "token") ?? "") { result in
+            switch result {
+            case .success:
+                self.showVC(isGallery: true, token: KeychainRepository.shared.getTokenFromKeychain(key: "token")!)
+            case .failure:
+                self.showVC(isGallery: false, token: "")
+            }
+        }
     }
     
+    private func showVC(isGallery: Bool, token: String) {
+        DispatchQueue.main.async {
+            var vc: UIViewController
+            if isGallery {
+                vc = GalleryViewController(token: token)
+            } else {
+                vc = AuthenticationViewController()
+            }
+            let navController = UINavigationController(rootViewController: vc)
+            navController.navigationBar.prefersLargeTitles = true
+            self.window?.rootViewController = navController
+        }
+    }
 }

@@ -11,10 +11,10 @@ import WebKit
 final class AuthenticationWebViewController: UIViewController {
     
     private var urlComponents = URLComponents()
-//    var token = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         makeurlComponents()
     }
     
@@ -30,19 +30,24 @@ final class AuthenticationWebViewController: UIViewController {
         urlComponents.path = "/authorize"
         
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: "51620652"),
+            URLQueryItem(name: "client_id", value: "51622656"),
             URLQueryItem(name: "redirect_url", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "response_type", value: "token"),
         ]
         
         let request = URLRequest(url: urlComponents.url!)
+        print(request)
         webView.load(request)
     }
 }
 
 extension AuthenticationWebViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+    func webView(
+        _ webView: WKWebView,
+        decidePolicyFor navigationResponse: WKNavigationResponse,
+        decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void
+    ) {
         guard let url = navigationResponse.response.url,
               url.path == "/blank.html",
               let fragment = url.fragment else {
@@ -62,8 +67,9 @@ extension AuthenticationWebViewController: WKNavigationDelegate {
             }
 
         if let accessToken = params["access_token"] {
-//            self.token = accessToken
-            navigationController?.pushViewController(GalleryViewController(galleryView: GalleryView(), token: accessToken), animated: true)
+            print(accessToken)
+            KeychainRepository.shared.saveTokenToKeychain(token: accessToken, key: "token")
+            navigationController?.pushViewController(GalleryViewController(token: accessToken), animated: true)
         }
         decisionHandler(.cancel)
     }

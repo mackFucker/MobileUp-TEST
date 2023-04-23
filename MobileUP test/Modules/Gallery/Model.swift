@@ -7,77 +7,29 @@
 
 import UIKit
 
-struct Welcome: Codable {
-    let response: Response
-}
-
-// MARK: - Response
-struct Response: Codable {
-    let count: Int
-    let items: [Item]
-}
-
-// MARK: - Item
-struct Item: Codable {
-    let albumID, date, id, ownerID: Int
-    let sizes: [Size]
-    let text: String
-    let userID: Int
-    let hasTags: Bool
-
-    enum CodingKeys: String, CodingKey {
-        case albumID = "album_id"
-        case date, id
-        case ownerID = "owner_id"
-        case sizes, text
-        case userID = "user_id"
-        case hasTags = "has_tags"
-    }
-}
-
-// MARK: - Size
-struct Size: Codable {
-    let height: Int
-    let type: TypeEnum
-    let width: Int
-    let url: String
-}
-
-enum TypeEnum: String, Codable {
-    case m = "m"
-    case o = "o"
-    case p = "p"
-    case q = "q"
-    case r = "r"
-    case s = "s"
-    case w = "w"
-    case x = "x"
-    case y = "y"
-    case z = "z"
-}
-
 struct ViewModel {
     let id: Int
     let image: String
 }
 
-protocol ModelDelegate: AnyObject {
+protocol DataSource: AnyObject {
     func getData(token: String)
     func setupDelegate(delegate: GalleryViewControllerInput)
 }
 
-final class ModelDataSource: ModelDelegate {
+final class DataSourceImpl: DataSource {
    
-    static let shared = ModelDataSource()
+    static let shared = DataSourceImpl()
     private weak var delegate: GalleryViewControllerInput?
 
     private init () {}
         
     func getData(token: String) {
-        NetworkManager.shared.getResultStruct(token: token) { result in
+        let url = "https://api.vk.com/method/photos.get?access_token=\(token)&owner_id=-128666765&album_id=266310117&v=5.131"
+        NetworkManager.shared.getResultStruct(url: url ) { result in
             switch result {
                 case .success(let success):
-                let viewModels = success.response.items.map {ViewModel(id: $0.id, image: $0.sizes[0].url)}
+                let viewModels = success.response.items.map { ViewModel(id: $0.id, image: $0.sizes[3].url) }
                     self.delegate?.getDataArray(viewModel: viewModels)
                 case .failure:
                     break

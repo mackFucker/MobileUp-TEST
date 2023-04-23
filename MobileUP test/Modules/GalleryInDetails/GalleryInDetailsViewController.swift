@@ -13,5 +13,4 @@ class GalleryInDetailsViewController: UIViewController {
         super.viewDidLoad()
 
     }
-
 }

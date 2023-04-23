@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 protocol GalleryViewControllerInput: AnyObject {
     func getDataArray(viewModel: [ViewModel])
@@ -14,15 +15,15 @@ protocol GalleryViewControllerInput: AnyObject {
 final class GalleryViewController: UIViewController {
     
     private var viewModels = [ViewModel]()
-    private var modelRepository: ModelDelegate = ModelDataSource.shared
-    private let galleryView: GalleryViewInput
+    private var modelRepository = DataSourceImpl.shared
+    private var galleryView: GalleryViewInput { view as! GalleryViewInput }
     
-    init(galleryView: GalleryViewInput, token: String) {
-        self.galleryView = galleryView
-        
+    init(token: String) {
         super.init(nibName: nil, bundle: nil)
         
         self.title = "MobileUp Gallery"
+        navigationItem.hidesBackButton = true
+        navigationItem.rightBarButtonItem = exitButton
         
         modelRepository.setupDelegate(delegate: self)
         modelRepository.getData(token: token)
@@ -33,43 +34,84 @@ final class GalleryViewController: UIViewController {
     }
     
     override func loadView() {
-        view = galleryView
+        view = GalleryView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         galleryView.setCollectionViewSources(source: self)
-
     }
+    
+    @objc
+    private func logOutOfYourAccount() {
+        KeychainRepository.shared.deleteTokenFromKeychain(key: "token")
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+            print("All cookies deleted")
+
+            WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+                records.forEach { record in
+                    WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                    print("Cookie ::: \(record) deleted")
+                }
+            }
+    }
+    
+    private lazy var exitButton: UIBarButtonItem = {
+        let exitButton = UIBarButtonItem(title: "Выход",
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(logOutOfYourAccount))
+        exitButton.tintColor = .label
+        return exitButton
+    }()
 }
 
 extension GalleryViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         return viewModels.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifer,
-                                                 for: indexPath as IndexPath) as! CollectionViewCell
+                                                      for: indexPath as IndexPath) as! CollectionViewCell
         cell.setup(viewModel: viewModels[indexPath.row])
         return cell
     }
 }
 
 extension GalleryViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let lay = collectionViewLayout as! UICollectionViewFlowLayout
-        let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        let widthPerItem = collectionView.frame.width / 2 - layout.minimumInteritemSpacing
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 1, bottom: 1, right: 1)
     }
 }
 
 extension GalleryViewController: GalleryViewControllerInput {
     func getDataArray(viewModel: [ViewModel]) {
-        self.viewModels = viewModel
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.viewModels = viewModel
+            self.galleryView.colectionViewReloadData()
+        }
     }
 }

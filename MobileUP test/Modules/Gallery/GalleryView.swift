@@ -9,6 +9,7 @@ import UIKit
 
 protocol GalleryViewInput: UIView {
     func setCollectionViewSources(source: CollectionViewSources)
+    func colectionViewReloadData()
 }
 
 typealias CollectionViewSources = UICollectionViewDelegate & UICollectionViewDataSource & UICollectionViewDelegateFlowLayout
@@ -25,27 +26,20 @@ final class GalleryView: UIView {
     }
     
     private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
+        let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = UICollectionView.ScrollDirection.vertical
         layout.minimumLineSpacing = 2
         layout.minimumInteritemSpacing = 2
-        collectionView.setCollectionViewLayout(layout, animated: true)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifer)
         addSubview(collectionView)
         return collectionView
     }()
     
-    override func updateConstraints() {
-        super.updateConstraints()
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
-        ])
+        collectionView.frame = frame
     }
 }
 
@@ -55,5 +49,10 @@ extension GalleryView: GalleryViewInput {
         collectionView.dataSource = source
     }
     
+    func colectionViewReloadData() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
 }
 
