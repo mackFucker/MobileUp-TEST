@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             case .success:
                 self.showVC(isGallery: true, token: KeychainRepository.shared.getTokenFromKeychain(key: "token")!)
             case .failure:
+                KeychainRepository.shared.deleteTokenFromKeychain(key: "token")
                 self.showVC(isGallery: false, token: "")
             }
         }
