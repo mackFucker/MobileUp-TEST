@@ -2,7 +2,7 @@
 //  AuthenticationViewController.swift
 //  MobileUP test
 //
-//  Created by дэвид Кихтенко on 20.04.2023.
+//  Created by дэвид Кихтенко on 25.04.2023.
 //
 
 import UIKit
@@ -30,4 +30,3 @@ extension AuthenticationViewController: AuthenticationViewOutput {
         self.navigationController?.pushViewController(webView, animated: true)
     }
 }
-
