@@ -5,15 +5,29 @@
 //  Created by дэвид Кихтенко on 20.04.2023.
 //
 
-import Foundation
-
 import UIKit
 
 final class AuthenticationViewController: UIViewController {
     
-    private let onboardingView = AuthenticationView()
-    
     override func loadView() {
-        view = onboardingView
+        view = AuthenticationView(delegate: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+   
+    override func viewWillDisappear(_ animated: Bool) {
+         self.navigationController?.setNavigationBarHidden(false, animated: animated)
+         super.viewWillDisappear(animated)
     }
 }
+
+extension AuthenticationViewController: AuthenticationViewOutput {
+    func openVKAuth() {
+        let webView = AuthenticationWebViewController()
+        self.navigationController?.pushViewController(webView, animated: true)
+    }
+}
+
