@@ -43,8 +43,28 @@ final class GalleryViewController: UIViewController {
         galleryView.setCollectionViewSources(source: self)
     }
     
+    private lazy var exitButton: UIBarButtonItem = {
+        let exitButton = UIBarButtonItem(title: "Выход",
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(logOutOfYourAccountPresentAlert))
+        exitButton.tintColor = .label
+        return exitButton
+    }()
+    
+    @objc
+    private func logOutOfYourAccountPresentAlert() {
+        
+        let alert = UIAlertController(title: "Выход", message: "Вы действительно хотите выйти из аккаунта?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Выйти", style: UIAlertAction.Style.destructive, handler: {action in self.logOutOfYourAccount()}))
+        alert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.cancel, handler: nil))
+
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @objc
     private func logOutOfYourAccount() {
+        
         KeychainRepository.shared.deleteTokenFromKeychain(key: "token")
         HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
             print("All cookies deleted")
@@ -55,16 +75,12 @@ final class GalleryViewController: UIViewController {
                     print("Cookie ::: \(record) deleted")
                 }
             }
+        
+        let vc = AuthenticationViewController()
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .flipHorizontal
+        present(vc, animated: true)
     }
-    
-    private lazy var exitButton: UIBarButtonItem = {
-        let exitButton = UIBarButtonItem(title: "Выход",
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(logOutOfYourAccount))
-        exitButton.tintColor = .label
-        return exitButton
-    }()
 }
 
 extension GalleryViewController: UICollectionViewDataSource {
