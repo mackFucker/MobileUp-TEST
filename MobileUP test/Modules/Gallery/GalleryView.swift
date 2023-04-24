@@ -31,7 +31,7 @@ final class GalleryView: UIView {
         layout.minimumLineSpacing = 2
         layout.minimumInteritemSpacing = 2
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifer)
+        collectionView.register(GalleryViewCell.self, forCellWithReuseIdentifier: GalleryViewCell.identifer)
         addSubview(collectionView)
         return collectionView
     }()

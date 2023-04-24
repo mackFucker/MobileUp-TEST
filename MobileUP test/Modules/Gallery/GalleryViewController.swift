@@ -23,7 +23,7 @@ final class GalleryViewController: UIViewController {
         
         self.title = "MobileUp Gallery"
         navigationItem.hidesBackButton = true
-        navigationItem.rightBarButtonItem = exitButton
+        navigationItem.rightBarButtonItem = exitNavigatonBarButton
         
         modelRepository.setupDelegate(delegate: self)
         modelRepository.getData(token: token)
@@ -43,7 +43,7 @@ final class GalleryViewController: UIViewController {
         galleryView.setCollectionViewSources(source: self)
     }
     
-    private lazy var exitButton: UIBarButtonItem = {
+    private lazy var exitNavigatonBarButton: UIBarButtonItem = {
         let exitButton = UIBarButtonItem(title: "Выход",
                                          style: .plain,
                                          target: self,
@@ -77,9 +77,7 @@ final class GalleryViewController: UIViewController {
             }
         
         let vc = AuthenticationViewController()
-        vc.modalPresentationStyle = .fullScreen
-        vc.modalTransitionStyle = .flipHorizontal
-        present(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -95,8 +93,8 @@ extension GalleryViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifer,
-                                                      for: indexPath as IndexPath) as! CollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryViewCell.identifer,
+                                                      for: indexPath as IndexPath) as! GalleryViewCell
         cell.setup(viewModel: viewModels[indexPath.row])
         return cell
     }
@@ -119,6 +117,13 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
         insetForSectionAt section: Int
     ) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 1, bottom: 1, right: 1)
+    }
+}
+
+extension GalleryViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = GalleryInDetailsViewController(viewModels: viewModels, index: CGFloat(indexPath.row))
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

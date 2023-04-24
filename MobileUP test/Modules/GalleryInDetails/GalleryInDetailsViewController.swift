@@ -7,10 +7,115 @@
 
 import UIKit
 
-class GalleryInDetailsViewController: UIViewController {
+final class GalleryInDetailsViewController: UIViewController {
+    
+    private var galleryInDetailsView: GalleryInDetailsViewInput { view as! GalleryInDetailsViewInput }
+    private var viewModels: [ViewModel]
+    private let index: CGFloat
+        
+    init(viewModels: [ViewModel], index: CGFloat) {
+        self.viewModels = viewModels
+        self.index = index
+        super.init(nibName: nil, bundle: nil)
+        
+        self.title = "date"
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.hidesBackButton = true
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        navigationItem.rightBarButtonItem = shareNavigatonBarButton
+        navigationItem.leftBarButtonItem = backNavigatonBarButton
+
 
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        
+        view = GalleryInDetailsView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.largeTitleDisplayMode = .never
+        galleryInDetailsView.setCollectionViewSources(source: self)
+    }
+    
+    private lazy var shareNavigatonBarButton: UIBarButtonItem = {
+        let shareNavigatonBarButton = UIBarButtonItem(title: nil,
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(share))
+        shareNavigatonBarButton.tintColor = .label
+        shareNavigatonBarButton.image = UIImage(systemName: "square.and.arrow.up")
+        return shareNavigatonBarButton
+    }()
+    
+    private lazy var backNavigatonBarButton: UIBarButtonItem = {
+        let backNavigatonBarButton = UIBarButtonItem(title: nil,
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(back))
+        backNavigatonBarButton.tintColor = .label
+        backNavigatonBarButton.image = UIImage(systemName: "chevron.backward")
+        return backNavigatonBarButton
+    }()
+    
+    @objc
+    private func back() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    private func share() {
+        navigationController?.dismiss(animated: true)
+    }
+    
 }
+
+extension GalleryInDetailsViewController: UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        let widht = collectionView.frame.width
+        collectionView.contentOffset.x = widht * index
+        return viewModels.count
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryInDetailsCell.identifer,
+                                                      for: indexPath as IndexPath) as! GalleryInDetailsCell
+        cell.setup(viewModel: viewModels[indexPath.row])
+
+        return cell
+    }
+}
+
+extension GalleryInDetailsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        
+        let heightPerItem = collectionView.frame.height
+        let widthPerItem = collectionView.frame.width
+        return CGSize(width: widthPerItem, height: heightPerItem - 200)
+    }
+}
+
+
+
+
+
+
+
+

@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-final class CollectionViewCell: UICollectionViewCell {
+final class GalleryViewCell: UICollectionViewCell {
     
     override class var requiresConstraintBasedLayout: Bool { true }
         
