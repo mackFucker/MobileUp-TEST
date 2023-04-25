@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol GalleryInDetailsViewInput: UIView {
+protocol GallerFullScreenViewInput: UIView {
     func setCollectionViewSources(source: CollectionViewSources)
     func colectionViewReloadData()
 }
 
-final class GalleryInDetailsView: UIView {
+final class GallerFullScreenView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,7 +44,7 @@ final class GalleryInDetailsView: UIView {
     }
 }
 
-extension GalleryInDetailsView: GalleryInDetailsViewInput {
+extension GallerFullScreenView: GallerFullScreenViewInput {
     
     func setCollectionViewSources(source: CollectionViewSources) {
         collectionView.dataSource = source

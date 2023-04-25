@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class GalleryInDetailsViewController: UIViewController {
+final class GallerFullScreenController: UIViewController {
     
-    private var galleryInDetailsView: GalleryInDetailsViewInput { view as! GalleryInDetailsViewInput }
+    private var  GallerFullScreenView: GallerFullScreenViewInput { view as! GallerFullScreenViewInput }
     private var viewModels: [ViewModel]
     private let index: CGFloat
         
@@ -35,14 +35,14 @@ final class GalleryInDetailsViewController: UIViewController {
     
     override func loadView() {
         
-        view = GalleryInDetailsView()
+        view = GallerFullScreenView()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .never
-        galleryInDetailsView.setCollectionViewSources(source: self)
+         GallerFullScreenView.setCollectionViewSources(source: self)
     }
     
     private lazy var shareNavigatonBarButton: UIBarButtonItem = {
@@ -77,7 +77,7 @@ final class GalleryInDetailsViewController: UIViewController {
     
 }
 
-extension GalleryInDetailsViewController: UICollectionViewDataSource {
+extension GallerFullScreenController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
@@ -99,7 +99,7 @@ extension GalleryInDetailsViewController: UICollectionViewDataSource {
     }
 }
 
-extension GalleryInDetailsViewController: UICollectionViewDelegateFlowLayout {
+extension GallerFullScreenController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,

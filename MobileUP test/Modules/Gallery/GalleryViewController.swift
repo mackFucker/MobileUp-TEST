@@ -122,7 +122,7 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout {
 
 extension GalleryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = GalleryInDetailsViewController(viewModels: viewModels, index: CGFloat(indexPath.row))
+        let vc = GallerFullScreenController(viewModels: viewModels, index: CGFloat(indexPath.row))
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

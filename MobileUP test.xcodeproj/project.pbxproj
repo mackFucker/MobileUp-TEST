@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2692ACB12E63502A72FDC998 /* Pods_MobileUP_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120A98F35F86DFAFF2BBD1E1 /* Pods_MobileUP_test.framework */; };
 		8F2942C529F578E100CD6CFA /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2942C429F578E100CD6CFA /* UICollectionViewCell+.swift */; };
-		8F2942C929F588FC00CD6CFA /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2942C829F588FC00CD6CFA /* KeychainService.swift */; };
+		8F2942C929F588FC00CD6CFA /* KeychainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2942C829F588FC00CD6CFA /* KeychainRepository.swift */; };
 		8F2942CB29F5D90600CD6CFA /* KeychainErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2942CA29F5D90600CD6CFA /* KeychainErrors.swift */; };
 		8FB9CBD729F132860024AB73 /* AuthenticationWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB9CBD629F132860024AB73 /* AuthenticationWebView.swift */; };
 		8FB9CBD929F16C4B0024AB73 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB9CBD829F16C4B0024AB73 /* Model.swift */; };
@@ -21,8 +21,8 @@
 		8FF0271B29F059CB00F3F878 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0271A29F059CB00F3F878 /* AuthenticationView.swift */; };
 		8FF0272029F05D1400F3F878 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0271F29F05D1400F3F878 /* GalleryViewController.swift */; };
 		8FF0272229F05D3900F3F878 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0272129F05D3900F3F878 /* GalleryView.swift */; };
-		8FF0272429F05D5900F3F878 /* GalleryInDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0272329F05D5900F3F878 /* GalleryInDetailsViewController.swift */; };
-		8FF0272629F05D6900F3F878 /* GalleryInDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0272529F05D6900F3F878 /* GalleryInDetailsView.swift */; };
+		8FF0272429F05D5900F3F878 /* GallerFullScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0272329F05D5900F3F878 /* GallerFullScreenController.swift */; };
+		8FF0272629F05D6900F3F878 /* GallerFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0272529F05D6900F3F878 /* GallerFullScreenView.swift */; };
 		8FF0272829F08E3400F3F878 /* GalleryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0272729F08E3400F3F878 /* GalleryViewCell.swift */; };
 		8FF6278E29F6D79E00796BF0 /* GalleryInDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6278D29F6D79D00796BF0 /* GalleryInDetailsCell.swift */; };
 		8FF6279029F738A800796BF0 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6278F29F738A700796BF0 /* AuthenticationViewController.swift */; };
@@ -33,7 +33,7 @@
 		5120DC20976D91BDE51B6D28 /* Pods-MobileUP test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileUP test.release.xcconfig"; path = "Target Support Files/Pods-MobileUP test/Pods-MobileUP test.release.xcconfig"; sourceTree = "<group>"; };
 		691BB30DC62C39F62A2D4600 /* Pods-MobileUP test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileUP test.debug.xcconfig"; path = "Target Support Files/Pods-MobileUP test/Pods-MobileUP test.debug.xcconfig"; sourceTree = "<group>"; };
 		8F2942C429F578E100CD6CFA /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
-		8F2942C829F588FC00CD6CFA /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		8F2942C829F588FC00CD6CFA /* KeychainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainRepository.swift; sourceTree = "<group>"; };
 		8F2942CA29F5D90600CD6CFA /* KeychainErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainErrors.swift; sourceTree = "<group>"; };
 		8FB9CBD529F0B4AD0024AB73 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8FB9CBD629F132860024AB73 /* AuthenticationWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationWebView.swift; sourceTree = "<group>"; };
@@ -48,8 +48,8 @@
 		8FF0271A29F059CB00F3F878 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		8FF0271F29F05D1400F3F878 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		8FF0272129F05D3900F3F878 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
-		8FF0272329F05D5900F3F878 /* GalleryInDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryInDetailsViewController.swift; sourceTree = "<group>"; };
-		8FF0272529F05D6900F3F878 /* GalleryInDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryInDetailsView.swift; sourceTree = "<group>"; };
+		8FF0272329F05D5900F3F878 /* GallerFullScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallerFullScreenController.swift; sourceTree = "<group>"; };
+		8FF0272529F05D6900F3F878 /* GallerFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallerFullScreenView.swift; sourceTree = "<group>"; };
 		8FF0272729F08E3400F3F878 /* GalleryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewCell.swift; sourceTree = "<group>"; };
 		8FF6278D29F6D79D00796BF0 /* GalleryInDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryInDetailsCell.swift; sourceTree = "<group>"; };
 		8FF6278F29F738A700796BF0 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 		8F2942C729F588F000CD6CFA /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8F2942C829F588FC00CD6CFA /* KeychainService.swift */,
+				8F2942C829F588FC00CD6CFA /* KeychainRepository.swift */,
 				8F2942CA29F5D90600CD6CFA /* KeychainErrors.swift */,
 			);
 			path = Services;
@@ -161,8 +161,8 @@
 		8FF0271E29F05C4600F3F878 /* GalleryInDetails */ = {
 			isa = PBXGroup;
 			children = (
-				8FF0272329F05D5900F3F878 /* GalleryInDetailsViewController.swift */,
-				8FF0272529F05D6900F3F878 /* GalleryInDetailsView.swift */,
+				8FF0272329F05D5900F3F878 /* GallerFullScreenController.swift */,
+				8FF0272529F05D6900F3F878 /* GallerFullScreenView.swift */,
 				8FF6278D29F6D79D00796BF0 /* GalleryInDetailsCell.swift */,
 			);
 			path = GalleryInDetails;
@@ -308,12 +308,12 @@
 				8FF0272829F08E3400F3F878 /* GalleryViewCell.swift in Sources */,
 				8FF0270529F050C100F3F878 /* SceneDelegate.swift in Sources */,
 				8FF0272029F05D1400F3F878 /* GalleryViewController.swift in Sources */,
-				8FF0272429F05D5900F3F878 /* GalleryInDetailsViewController.swift in Sources */,
+				8FF0272429F05D5900F3F878 /* GallerFullScreenController.swift in Sources */,
 				8F2942C529F578E100CD6CFA /* UICollectionViewCell+.swift in Sources */,
 				8FB9CBD929F16C4B0024AB73 /* Model.swift in Sources */,
 				8FF6279029F738A800796BF0 /* AuthenticationViewController.swift in Sources */,
-				8F2942C929F588FC00CD6CFA /* KeychainService.swift in Sources */,
-				8FF0272629F05D6900F3F878 /* GalleryInDetailsView.swift in Sources */,
+				8F2942C929F588FC00CD6CFA /* KeychainRepository.swift in Sources */,
+				8FF0272629F05D6900F3F878 /* GallerFullScreenView.swift in Sources */,
 				8FF0271B29F059CB00F3F878 /* AuthenticationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

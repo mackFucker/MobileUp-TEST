@@ -7,7 +7,7 @@
 
 import Foundation
 
-class KeychainRepository {
+final class KeychainRepository {
     
     private let service = "www.MobileUPTest.com"
     
