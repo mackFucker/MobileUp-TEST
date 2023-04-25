@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class GallerFullScreenController: UIViewController {
     
     private var  gallerFullScreenView: GallerFullScreenViewInput { view as! GallerFullScreenViewInput }
     private var viewModels: [ViewModel]
     private let index: CGFloat
-    
+    var itemIndex: CGFloat = 0
     
     init(viewModels: [ViewModel], index: CGFloat) {
         self.viewModels = viewModels
@@ -24,8 +25,6 @@ final class GallerFullScreenController: UIViewController {
 
         navigationItem.rightBarButtonItem = shareNavigatonBarButton
         navigationItem.leftBarButtonItem = backNavigatonBarButton
-
-
     }
     
     required init?(coder: NSCoder) {
@@ -50,7 +49,7 @@ final class GallerFullScreenController: UIViewController {
         let shareNavigatonBarButton = UIBarButtonItem(title: nil,
                                          style: .plain,
                                          target: self,
-                                         action: #selector(share))
+                                         action: #selector(presentShareSheet))
         shareNavigatonBarButton.tintColor = .label
         shareNavigatonBarButton.image = UIImage(systemName: "square.and.arrow.up")
         return shareNavigatonBarButton
@@ -72,8 +71,23 @@ final class GallerFullScreenController: UIViewController {
     }
     
     @objc
-    private func share() {
-        navigationController?.dismiss(animated: true)
+    private func presentShareSheet(_ sender: UIButton) {
+        let image = UIImageView()
+        
+        if itemIndex.isNaN {
+            image.sd_setImage(with: .init(string: viewModels[0].image))
+        }
+        else {
+            image.sd_setImage(with: .init(string: viewModels[Int(itemIndex)].image))
+        }
+        
+        let url = URL(string: "https://vk.com")
+        
+        let shareSheetVC = UIActivityViewController(activityItems: [image.image as Any, url as Any],
+                                                    applicationActivities: nil)
+        shareSheetVC.popoverPresentationController?.sourceView = sender
+        shareSheetVC.popoverPresentationController?.sourceRect = sender.frame
+        present(shareSheetVC, animated: true)
     }
     
 }
@@ -81,7 +95,7 @@ final class GallerFullScreenController: UIViewController {
 extension GallerFullScreenController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        let itemIndex = scrollView.contentOffset.x / scrollView.frame.width
+        itemIndex = scrollView.contentOffset.x / scrollView.frame.width
 
         if itemIndex.truncatingRemainder(dividingBy: 1) == 0 {
             let index = Int(itemIndex)

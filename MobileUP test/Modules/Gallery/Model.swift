@@ -32,7 +32,7 @@ final class DataSourceImpl: DataSource {
                 case .success(let success):
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "d MMMM YYYY"
-                let viewModels = success.response.items.map { ViewModel(image: $0.sizes[3].url,
+                let viewModels = success.response.items.map { ViewModel(image: $0.sizes[4].url,
                                                                         date: dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval($0.date)))) }
                     self.delegate?.getDataArray(viewModel: viewModels)
                 case .failure:
