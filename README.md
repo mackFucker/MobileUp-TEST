@@ -2,7 +2,7 @@
 
 ### **1.верстка UI.**
 + Создание всех view:
-```Python
+```Swift
 class AuthenticationView()
 class AuthenticationWebView()
 class GalleryView()
