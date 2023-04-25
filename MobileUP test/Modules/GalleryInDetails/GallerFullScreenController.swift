@@ -9,17 +9,16 @@ import UIKit
 
 final class GallerFullScreenController: UIViewController {
     
-    private var  GallerFullScreenView: GallerFullScreenViewInput { view as! GallerFullScreenViewInput }
+    private var  gallerFullScreenView: GallerFullScreenViewInput { view as! GallerFullScreenViewInput }
     private var viewModels: [ViewModel]
     private let index: CGFloat
-        
+    
+    
     init(viewModels: [ViewModel], index: CGFloat) {
         self.viewModels = viewModels
         self.index = index
         super.init(nibName: nil, bundle: nil)
-        
-        self.title = "date"
-        
+                
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.hidesBackButton = true
 
@@ -42,7 +41,7 @@ final class GallerFullScreenController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .never
-         GallerFullScreenView.setCollectionViewSources(source: self)
+         gallerFullScreenView.setCollectionViewSources(source: self)
     }
     
     private lazy var shareNavigatonBarButton: UIBarButtonItem = {
@@ -75,6 +74,19 @@ final class GallerFullScreenController: UIViewController {
         navigationController?.dismiss(animated: true)
     }
     
+}
+
+extension GallerFullScreenController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let itemIndex = scrollView.contentOffset.x / scrollView.frame.width
+        if itemIndex.truncatingRemainder(dividingBy: 1) == 0 {
+            let index = Int(itemIndex)
+            title = "\(viewModels[index].date)"
+        }
+        if scrollView.contentOffset.x == 0 {
+            title = "\(viewModels[0].date)"
+        }
+    }
 }
 
 extension GallerFullScreenController: UICollectionViewDataSource {

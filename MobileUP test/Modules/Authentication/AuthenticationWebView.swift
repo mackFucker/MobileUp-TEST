@@ -11,20 +11,33 @@ import WebKit
 final class AuthenticationWebViewController: UIViewController {
     
     private var urlComponents = URLComponents()
+    
+    private lazy var webView: WKWebView = {
+        let preferences = WKWebpagePreferences()
+        preferences.allowsContentJavaScript = true
+        let configuration = WKWebViewConfiguration()
+        configuration.defaultWebpagePreferences = preferences
+        let webView = WKWebView(frame: .zero, configuration: configuration)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        return webView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
+        view.addSubview(webView)
+        
+        webView.navigationDelegate = self
+        webView.allowsBackForwardNavigationGestures = true
+        
         makeurlComponents()
+
+        configureButtons()
     }
     
+    @objc
     private func makeurlComponents() {
-        let webView = WKWebView()
-        view = webView
-        webView.navigationDelegate = self
-        
-        webView.allowsBackForwardNavigationGestures = true
-
         urlComponents.scheme = "https"
         urlComponents.host = "oauth.vk.com"
         urlComponents.path = "/authorize"
@@ -37,8 +50,23 @@ final class AuthenticationWebViewController: UIViewController {
         ]
         
         let request = URLRequest(url: urlComponents.url!)
-        print(request)
         webView.load(request)
+    }
+    
+    private func configureButtons() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(makeurlComponents))
+
+    }
+    
+    @objc
+    private func didTapDone() {
+        dismiss(animated: true)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        webView.frame = view.bounds
     }
 }
 

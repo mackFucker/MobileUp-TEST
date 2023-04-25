@@ -9,7 +9,7 @@ import UIKit
 
 struct ViewModel {
     let image: String
-    let date: Int
+    let date: String
 }
 
 protocol DataSource: AnyObject {
@@ -30,7 +30,10 @@ final class DataSourceImpl: DataSource {
         NetworkManager.shared.getResultStruct(url: url ) { result in
             switch result {
                 case .success(let success):
-                let viewModels = success.response.items.map { ViewModel(image: $0.sizes[3].url, date: $0.date) }
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "d MMMM YYYY"
+                let viewModels = success.response.items.map { ViewModel(image: $0.sizes[3].url,
+                                                                        date: dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval($0.date)))) }
                     self.delegate?.getDataArray(viewModel: viewModels)
                 case .failure:
                     break
