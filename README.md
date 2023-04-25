@@ -4,8 +4,14 @@
 + Создание всех view:
 ```Swift
 class AuthenticationView()
+```
+```swift
 class AuthenticationWebView()
+````
+```swift
 class GalleryView()
+```
+```swift
 class GallerFullScreenView()
 ```
 
