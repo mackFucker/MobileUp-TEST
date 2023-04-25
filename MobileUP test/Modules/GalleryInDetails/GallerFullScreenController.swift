@@ -41,6 +41,8 @@ final class GallerFullScreenController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .never
+        title = "\(viewModels[Int(index)].date)"
+
          gallerFullScreenView.setCollectionViewSources(source: self)
     }
     
@@ -78,13 +80,12 @@ final class GallerFullScreenController: UIViewController {
 
 extension GallerFullScreenController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
         let itemIndex = scrollView.contentOffset.x / scrollView.frame.width
+
         if itemIndex.truncatingRemainder(dividingBy: 1) == 0 {
             let index = Int(itemIndex)
             title = "\(viewModels[index].date)"
-        }
-        if scrollView.contentOffset.x == 0 {
-            title = "\(viewModels[0].date)"
         }
     }
 }
