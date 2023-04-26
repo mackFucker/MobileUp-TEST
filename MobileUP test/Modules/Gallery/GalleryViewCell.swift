@@ -15,7 +15,7 @@ final class GalleryViewCell: UICollectionViewCell {
     private lazy var image: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = .red
+        image.backgroundColor = .systemGray2
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         contentView.addSubview(image)

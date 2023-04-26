@@ -49,6 +49,7 @@ class KeychainRepository() {
 + Открытие конкретного фото по тапу на ячейку с фото в `GalleryView`.
 + создание Share-меню.
 + Вывод даты фото. 
++ `saveSuccesIndicatorShowAndHide()`
 
 ### **7.Обработка ошибок и добавление алертов.**
 + Ошибка `func share()`.

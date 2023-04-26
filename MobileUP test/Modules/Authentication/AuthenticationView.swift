@@ -56,7 +56,6 @@ final class AuthenticationView: UIView {
     }
     
     override func updateConstraints() {
-        super.updateConstraints()
         
         NSLayoutConstraint.activate([
             mobileUpLable.topAnchor.constraint(equalTo: topAnchor, constant: 170),
@@ -68,5 +67,7 @@ final class AuthenticationView: UIView {
             loginVK.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -42),
             loginVK.heightAnchor.constraint(equalToConstant: 52)
         ])
+        
+        super.updateConstraints()
     }
 }

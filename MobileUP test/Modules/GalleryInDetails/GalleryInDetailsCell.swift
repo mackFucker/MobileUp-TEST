@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-final class GalleryInDetailsCell: UICollectionViewCell, UIScrollViewDelegate{
+final class GalleryInDetailsCell: UICollectionViewCell {
     
     private lazy var image: UIImageView = {
         let image = UIImageView()

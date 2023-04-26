@@ -41,8 +41,8 @@ final class GallerFullScreenController: UIViewController {
         
         navigationItem.largeTitleDisplayMode = .never
         title = "\(viewModels[Int(index)].date)"
-
-         gallerFullScreenView.setCollectionViewSources(source: self)
+        
+        gallerFullScreenView.setCollectionViewSources(source: self)
     }
     
     private lazy var shareNavigatonBarButton: UIBarButtonItem = {
@@ -71,7 +71,7 @@ final class GallerFullScreenController: UIViewController {
     }
     
     @objc
-    private func presentShareSheet(_ sender: UIButton) {
+    private func presentShareSheet() {
         let image = UIImageView()
         
         if itemIndex.isNaN {
@@ -80,16 +80,22 @@ final class GallerFullScreenController: UIViewController {
         else {
             image.sd_setImage(with: .init(string: viewModels[Int(itemIndex)].image))
         }
-        
-        let url = URL(string: "https://vk.com")
-        
-        let shareSheetVC = UIActivityViewController(activityItems: [image.image as Any, url as Any],
+                
+        let shareSheetVC = UIActivityViewController(activityItems: [image.image as Any],
                                                     applicationActivities: nil)
-        shareSheetVC.popoverPresentationController?.sourceView = sender
-        shareSheetVC.popoverPresentationController?.sourceRect = sender.frame
+        shareSheetVC.completionWithItemsHandler = { _, bool, _, _ in
+            
+            if bool {
+                self.gallerFullScreenView.saveSuccesIndicatorShowAndHide()
+                print("save image success")
+            }
+            else {
+                print("dont image unsuccess")
+            }
+        }
+        
         present(shareSheetVC, animated: true)
     }
-    
 }
 
 extension GallerFullScreenController: UICollectionViewDelegate {
@@ -132,10 +138,10 @@ extension GallerFullScreenController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        
+
         let heightPerItem = collectionView.frame.height
         let widthPerItem = collectionView.frame.width
-        return CGSize(width: widthPerItem, height: heightPerItem - 200)
+        return CGSize(width: widthPerItem, height: heightPerItem)
     }
 }
 
