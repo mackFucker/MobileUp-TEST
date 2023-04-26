@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  MobileUP test
+
+  Created by дэвид Кихтенко on 26.04.2023.
+  
+*/
+
+"login.vk" = "log in using vk";
+
+"Exit" = "Exit";
+
+"Exit.alert.title" = "Do you really want to log out of your account?";
+
+"cancel" = "Сancel";
+
+"connect error" = "Connection error.";
+
+"connect.error.title" = "Check your internet connection.";
+
+"Ok" = "ok";

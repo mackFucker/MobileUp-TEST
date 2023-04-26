@@ -44,7 +44,7 @@ final class GalleryViewController: UIViewController {
     }
     
     private lazy var exitNavigatonBarButton: UIBarButtonItem = {
-        let exitButton = UIBarButtonItem(title: "Выход",
+        let exitButton = UIBarButtonItem(title: NSLocalizedString("Exit", comment: ""),
                                          style: .plain,
                                          target: self,
                                          action: #selector(logOutOfYourAccountPresentAlert))
@@ -55,9 +55,9 @@ final class GalleryViewController: UIViewController {
     @objc
     private func logOutOfYourAccountPresentAlert() {
         
-        let alert = UIAlertController(title: "Выход", message: "Вы действительно хотите выйти из аккаунта?", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Выйти", style: UIAlertAction.Style.destructive, handler: {action in self.logOutOfYourAccount()}))
-        alert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.cancel, handler: nil))
+        let alert = UIAlertController(title: NSLocalizedString("Exit", comment: ""), message: NSLocalizedString("Exit.alert.title", comment: ""), preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: UIAlertAction.Style.destructive, handler: {action in self.logOutOfYourAccount()}))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: UIAlertAction.Style.cancel, handler: nil))
 
         self.present(alert, animated: true, completion: nil)
     }
