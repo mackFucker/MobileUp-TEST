@@ -1,7 +1,7 @@
 # **MobileUp-TEST**
 
 ### **1.верстка UI.**
-+ Создание всех view:
++ Создание всех view: - 1 час 
 ```Swift
 class AuthenticationView() 
 ```
@@ -13,12 +13,12 @@ class GalleryView()
 ```
 ```swift
 class GallerFullScreenView()
-```-1 час
+```
 
 ### **2.Вход в аккаунт [VK](https://vk.com). и работа с [API](https://dev.vk.com/method).**
-+ Регистрация в `AuthenticationWebView`.
++ Регистрация в `AuthenticationWebView`. -1 час
 + получение токена . - 30 мин
-+ Реализация класса для работы с сетью: -3 часа
++ Реализация класса для работы с сетью: 
  ```Swift 
    class NetworkManager() {
         func checkToken()
@@ -26,6 +26,8 @@ class GallerFullScreenView()
         func getData()
    }
 ```
+-3 часа
+
 ### **3.Работа в Keychain.**
 + Реализация класса для работы с Keychain: -1 час 
 ```Swift 
@@ -43,7 +45,7 @@ class KeychainRepository() {
 + Выход из аккаунта с алертом, `func logOutOfYourAccount()`. 1.5 часа
   
 ### **5. Реализация элементарной навигации в `SceneDelegate()`.**
-+  проверка токена через API с помощью `func checkToken()` и заруск в зависимости от этого нужного ViewController.
++  проверка токена через API с помощью `func checkToken()` и заруск в зависимости от этого нужного ViewController. - 1.5 часа
 
 ### **6.Заполнение `GallerFullScreenView()` изображеними.**
 + Открытие конкретного фото по тапу на ячейку с фото в `GalleryView`. - 2 часа
@@ -57,7 +59,7 @@ class KeychainRepository() {
     + вход.
     + выход .
     + загрузка фото.
-  + ошибка с сохранением фото/успешное сохранение фото. - 1.5 часа
++ ошибка с сохранением фото/успешное сохранение фото. - 1.5 часа
 
 ### **Дополнительные требования:**
 +  На ячейки фотографий в коллекции добавить плейсхолдер и/или отображение степени загрузки фотографий, если они еще не скачаны. - 1 час
