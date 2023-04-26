@@ -14,6 +14,7 @@ final class GalleryViewCell: UICollectionViewCell {
         
     private lazy var image: UIImageView = {
         let image = UIImageView()
+        image.sd_imageTransition = .fade
         image.translatesAutoresizingMaskIntoConstraints = false
         image.backgroundColor = .systemGray2
         image.contentMode = .scaleAspectFill

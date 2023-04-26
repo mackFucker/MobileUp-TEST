@@ -12,6 +12,7 @@ final class GalleryInDetailsCell: UICollectionViewCell {
     
     private lazy var image: UIImageView = {
         let image = UIImageView()
+        image.sd_imageTransition = .fade
         image.contentMode = .scaleAspectFit
         addSubview(image)
         return image
