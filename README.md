@@ -1,7 +1,7 @@
 # **MobileUp-TEST**
 
 ### **1.верстка UI.**
-+ Создание всех view: - 1 час 
++ Создание всех view: - 3 часа
 ```Swift
 class AuthenticationView() 
 ```

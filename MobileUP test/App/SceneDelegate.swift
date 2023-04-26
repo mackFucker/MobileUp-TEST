@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         self.window?.makeKeyAndVisible()
-        
+        windowScene.keyWindow?.backgroundColor = .systemBackground
         NetworkManager.shared.checkToken(token:  KeychainRepository.shared.getTokenFromKeychain(key: "token") ?? "") { result in
             switch result {
             case .success:

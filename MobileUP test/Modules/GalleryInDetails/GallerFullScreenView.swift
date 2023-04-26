@@ -33,7 +33,7 @@ final class GallerFullScreenView: UIView {
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isPagingEnabled = true
-        collectionView.register(GalleryInDetailsCell.self, forCellWithReuseIdentifier: GalleryInDetailsCell.identifer)
+        collectionView.register(GalleryFullScreenCell.self, forCellWithReuseIdentifier: GalleryFullScreenCell.identifer)
         addSubview(collectionView)
         return collectionView
     }()

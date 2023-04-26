@@ -13,13 +13,13 @@ final class GallerFullScreenController: UIViewController {
     private var  gallerFullScreenView: GallerFullScreenViewInput { view as! GallerFullScreenViewInput }
     private var viewModels: [ViewModel]
     private let index: CGFloat
-    var itemIndex: CGFloat = 0
+    private var itemIndex: CGFloat = 0
     
     init(viewModels: [ViewModel], index: CGFloat) {
         self.viewModels = viewModels
         self.index = index
+
         super.init(nibName: nil, bundle: nil)
-                
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.hidesBackButton = true
 
@@ -100,7 +100,6 @@ final class GallerFullScreenController: UIViewController {
 
 extension GallerFullScreenController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
         itemIndex = scrollView.contentOffset.x / scrollView.frame.width
 
         if itemIndex.truncatingRemainder(dividingBy: 1) == 0 {
@@ -124,10 +123,9 @@ extension GallerFullScreenController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryInDetailsCell.identifer,
-                                                      for: indexPath as IndexPath) as! GalleryInDetailsCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryFullScreenCell.identifer,
+                                                      for: indexPath as IndexPath) as! GalleryFullScreenCell
         cell.setup(viewModel: viewModels[indexPath.row])
-
         return cell
     }
 }
@@ -141,7 +139,7 @@ extension GallerFullScreenController: UICollectionViewDelegateFlowLayout {
 
         let heightPerItem = collectionView.frame.height
         let widthPerItem = collectionView.frame.width
-        return CGSize(width: widthPerItem, height: heightPerItem)
+        return CGSize(width: widthPerItem, height: heightPerItem - 45)
     }
 }
 
