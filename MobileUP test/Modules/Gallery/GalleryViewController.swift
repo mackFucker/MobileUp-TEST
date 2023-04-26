@@ -55,9 +55,9 @@ final class GalleryViewController: UIViewController {
     @objc
     private func logOutOfYourAccountPresentAlert() {
         
-        let alert = UIAlertController(title: "Выход".localized(), message: "Вы действительно хотите выйти из аккаунта?".localized(), preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Выйти".localized(), style: UIAlertAction.Style.destructive, handler: {action in self.logOutOfYourAccount()}))
-        alert.addAction(UIAlertAction(title: "Отмена".localized(), style: UIAlertAction.Style.cancel, handler: nil))
+        let alert = UIAlertController(title: "Выход", message: "Вы действительно хотите выйти из аккаунта?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Выйти", style: UIAlertAction.Style.destructive, handler: {action in self.logOutOfYourAccount()}))
+        alert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.cancel, handler: nil))
 
         self.present(alert, animated: true, completion: nil)
     }

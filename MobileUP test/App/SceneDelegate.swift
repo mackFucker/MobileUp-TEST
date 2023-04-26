@@ -51,8 +51,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func addNoConnectionAlert(navController: UINavigationController) {
         if self.monitor.isConnected == false {
-            let alert = UIAlertController(title: "Ошибка подключения".localized(), message: "Проверьте интернет соединение.".localized(), preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Ок".localized(), style: UIAlertAction.Style.default, handler: nil))
+            let alert = UIAlertController(title: "Ошибка подключения", message: "Проверьте интернет соединение.",
+                                          preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ок", style: UIAlertAction.Style.default, handler: nil))
             navController.present(alert, animated: true)
         }
     }
