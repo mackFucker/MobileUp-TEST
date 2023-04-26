@@ -42,7 +42,7 @@ final class AuthenticationView: UIView {
         let loginVK = UIButton()
         loginVK.backgroundColor = .label
         loginVK.layer.cornerRadius = 10
-        loginVK.setTitle("Вход через VK", for: .normal)
+        loginVK.setTitle("Вход через VK".localized(), for: .normal)
         loginVK.setTitleColor(.systemBackground, for: .normal)
         loginVK.translatesAutoresizingMaskIntoConstraints = false
         loginVK.addTarget(self, action: #selector(openWebViewVK), for: .touchUpInside)

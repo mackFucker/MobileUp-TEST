@@ -83,9 +83,9 @@ final class GallerFullScreenController: UIViewController {
                 
         let shareSheetVC = UIActivityViewController(activityItems: [image.image as Any],
                                                     applicationActivities: nil)
-        shareSheetVC.completionWithItemsHandler = { _, bool, _, _ in
+        shareSheetVC.completionWithItemsHandler = { type, bool, _, _ in
             
-            if bool {
+            if bool && type == .saveToCameraRoll {
                 self.gallerFullScreenView.saveSuccesIndicatorShowAndHide()
                 print("save image success")
             }

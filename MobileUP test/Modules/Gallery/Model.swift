@@ -31,6 +31,7 @@ final class DataSourceImpl: DataSource {
             switch result {
                 case .success(let success):
                 let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale.init(identifier: "ru_RU")
                 dateFormatter.dateFormat = "d MMMM YYYY"
                 let viewModels = success.response.items.map { ViewModel(image: $0.sizes[4].url,
                                                                         date: dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval($0.date)))) }
